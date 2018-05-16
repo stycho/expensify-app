@@ -1,5 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  NavLink
+} from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Header from '../components/Header';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
@@ -8,18 +15,24 @@ import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 
 const AppRouter = () => (
-  <BrowserRouter>
-    <div>
+  <Router>
+    <Route render={({ location }) => (
+      <div>
       <Header />
-      <Switch>
-        <Route path="/" component={ExpenseDashboardPage} exact={true} />
-        <Route path="/create" component={AddExpensePage} />
-        <Route path="/edit/:id" component={EditExpensePage} />
-        <Route path="/help" component={HelpPage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <TransitionGroup>
+        <CSSTransition key={location.key} classNames="fade" timeout={250}>
+          <Switch location={location}>
+            <Route exact path="/" component={ExpenseDashboardPage} />
+            <Route exact path="/create" component={AddExpensePage} />
+            <Route exact path="/edit/:id" component={EditExpensePage} />
+            <Route exact path="/help" component={HelpPage} />
+            <Route exact component={NotFoundPage} />
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
     </div>
-  </BrowserRouter>
+    )} />
+  </Router>
 );
 
 export default AppRouter;
