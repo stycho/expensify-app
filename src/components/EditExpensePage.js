@@ -21,12 +21,6 @@ const EditExpensePage = (props) => {
   );
 };
 
-const poop = [5, 6, 87, 3];
-
-console.log(poop.find((poo) => {
-  return poo === 87;
-}));
-
 const mapStateToProps = (state, props) => {
   return {
     expense: state.expenses.find((expense) => {
