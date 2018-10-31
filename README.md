@@ -1,1 +1,2 @@
-# react-boilerplate
+# Expensify
+An expense tracking app built with React and Rudux.
