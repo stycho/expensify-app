@@ -1,2 +1,2 @@
 # Expensify
-An expense tracking app built with React and Rudux.
+An expense tracking app built with React and Redux.
